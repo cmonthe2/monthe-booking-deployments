@@ -16,7 +16,7 @@ spec:
         kubernetes.io/os: linux
       containers:
       - name: booking-api
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/booking-api:latest
+        image: cmonthe8/booking-api:latest
         ports:
         - containerPort: 8080
 ---

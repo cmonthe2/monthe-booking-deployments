@@ -16,7 +16,7 @@ spec:
         kubernetes.io/os: linux
       containers:
       - name: user-api
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/user-api:latest
+        image: cmonthe8/user-api:latest
         ports:
         - containerPort: 8080
 ---

@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: booking-api
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/booking-api:latest
+        image: cmonthe8/booking-api:latest
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: user-api
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/user-api:latest
+        image: cmonthe8/user-api:latest
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,4 +29,4 @@ spec:
     spec:
       containers:
       - name: payment-api
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/payment-api:latest
+        image: cmonthe8/payment-api:latest

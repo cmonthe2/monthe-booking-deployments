@@ -6,13 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/cmonthe2/monthe-booking-deployments.git'
+    repoURL: 'https://github.com/cmonthe2/monthe-booking-deployments-1.git'
     targetRevision: main
     path: overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: dev
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
