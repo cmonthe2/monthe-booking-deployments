@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: booking-api
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/booking-api:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: user-api
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/user-api:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: payment-api
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/payment-api:latest

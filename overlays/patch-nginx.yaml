@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-frontend
+spec:
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/nginx-frontend:latest
