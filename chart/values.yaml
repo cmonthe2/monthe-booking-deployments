@@ -1,0 +1,73 @@
+# -------------------------------------------------------------------
+# Deployment configuration
+# -------------------------------------------------------------------
+
+replicaCount: 1
+
+# List of application components
+apps:
+  - name: booking-api
+    image: cmonthe8/booking-api:latest
+    port: 8081
+
+  - name: user-api
+    image: cmonthe8/user-api:latest
+    port: 8082
+
+  - name: payment-api
+    image: cmonthe8/payment-api:latest
+    port: 8083
+
+  - name: nginx-frontend
+    image: cmonthe8/nginx-frontend:latest
+    port: 80
+
+# -------------------------------------------------------------------
+# Kubernetes Service configuration
+# -------------------------------------------------------------------
+service:
+  # Use ClusterIP for internal communication (frontend talks to APIs)
+  type: ClusterIP
+
+# -------------------------------------------------------------------
+# Ingress / AWS ALB configuration
+# -------------------------------------------------------------------
+ingress:
+  enabled: true
+  className: alb
+  host: booking.monthe-dev.com
+
+  annotations:
+    # Tell AWS Load Balancer Controller to use a unique ALB just for this app
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: monthe-booking       # 👈 ensures a separate ALB
+    alb.ingress.kubernetes.io/group.order: '10'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+
+  # Path-based routing
+  paths:
+    - path: /
+      backend: nginx-frontend
+      port: 80
+    - path: /api/booking
+      backend: booking-api
+      port: 8081
+    - path: /api/user
+      backend: user-api
+      port: 8082
+    - path: /api/payment
+      backend: payment-api
+      port: 8083
+
+# -------------------------------------------------------------------
+# Resource requests and limits
+# -------------------------------------------------------------------
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
