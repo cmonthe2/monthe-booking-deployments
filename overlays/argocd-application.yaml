@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/cmonthe2/monthe-booking-deployments.git'
     targetRevision: main
-    path: overlays/Kustomization
+    path: overlays
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
